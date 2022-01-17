@@ -34,7 +34,7 @@ class Game {
         "Cell has already been selected. Please select another one!"
       );
     }
-    if ((this.turn = TURN_X)) {
+    if (this.turn == TURN_X) {
       this.board.cells[row][column] = CELLSTATE_X;
       this.turn = TURN_O;
     } else {
@@ -130,12 +130,15 @@ class Game {
   }
 
   allCellsFilled() {
+    let emptyCellFound = false;
     for (let row = 0; row < 3; row++) {
       for (let column = 0; column < 3; column++) {
-        return !(this.board.cells[row][column] == CELLSTATE_EMPTY);
+        if (this.board.cells[row][column] == CELLSTATE_EMPTY) {
+          emptyCellFound = true;
+        }
       }
     }
-    return true;
+    return !emptyCellFound;
   }
 }
 
